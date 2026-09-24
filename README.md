@@ -22,11 +22,15 @@ and the app works from the `/cyberchef-live/` subpath. Hash-based deep links
 (`#recipe=...`) work without any server rewrites.
 
 Excluded from the upstream `build/prod` output (not needed to serve the app):
-`BundleAnalyzerReport.html` (dev-only bundle analysis), the pre-compressed
-`*.br` / `*.gz` duplicates (GitHub Pages does not content-negotiate them),
-and `CyberChef_v11.5.0.zip` (91 MB offline-download archive — too large for
-the GitHub blob API, which 502'd on upload; the in-app "Download CyberChef"
-button will 404, everything else works).
+`BundleAnalyzerReport.html` (dev-only bundle analysis) and the pre-compressed
+`*.br` / `*.gz` duplicates (GitHub Pages does not content-negotiate them).
+
+One deliberate deviation in `index.html`: the in-app "Download ZIP file"
+button pointed at `CyberChef_v11.5.0.zip`, the 91 MB offline-download archive.
+That file is too large for the GitHub blob API (upload 502'd), and release
+assets can't be used from this automation, so the archive is not hosted here
+and the button was replaced with a disabled note saying so. Everything else
+in the app works as upstream built it.
 
 ## Build note
 
